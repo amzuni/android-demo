@@ -17,6 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.coolstyles.helloworld.adapter.StudentAdapter;
+import org.coolstyles.helloworld.data.DatabaseDao;
+import org.coolstyles.helloworld.data.DatabaseSQlite;
+import org.coolstyles.helloworld.data.dao.CategoryDao;
+import org.coolstyles.helloworld.data.dao.ProductDao;
+import org.coolstyles.helloworld.data.implement.CategoryDaoImplement;
+import org.coolstyles.helloworld.data.implement.ProductDaoImplement;
+import org.coolstyles.helloworld.data.model.Category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,5 +52,11 @@ public class MainActivity extends AppCompatActivity {
         StudentAdapter adapter = new StudentAdapter(studentName);
         rc.setAdapter(adapter);
         rc.setLayoutManager(new LinearLayoutManager(this));
+
+        DatabaseDao.init(new DatabaseSQlite(this));
+
+        CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
+        List<Category> categoryList = categoryDao.all();
+        categoryDao.find(1);
     }
 }
