@@ -56,7 +56,18 @@ public class MainActivity extends AppCompatActivity {
         DatabaseDao.init(new DatabaseSQlite(this));
 
         CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
+        Category category = new Category(1, "Java");
+        categoryDao.insert(category);
+
         List<Category> categoryList = categoryDao.all();
-        categoryDao.find(1);
+        for (Category cat : categoryList) {
+            Log.i("Category", String.format("id:%d - name:%s", cat.id, cat.name));
+        }
+
+        Category find = categoryDao.find(1);
+        categoryDao.delete(1);
+
+        category.name = "Java Web";
+        categoryDao.update(category);
     }
 }
