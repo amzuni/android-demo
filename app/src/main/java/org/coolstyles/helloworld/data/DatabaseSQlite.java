@@ -21,6 +21,6 @@ public class DatabaseSQlite extends DatabaseDao{
 
     @Override
     public ProductDao getProductDao() {
-        return new ProductDaoImplement();
+        return new ProductDaoImplement(context);
     }
 }
