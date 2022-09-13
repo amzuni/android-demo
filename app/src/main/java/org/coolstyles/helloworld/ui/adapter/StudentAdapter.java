@@ -1,4 +1,4 @@
-package org.coolstyles.helloworld.adapter;
+package org.coolstyles.helloworld.ui.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,35 +9,34 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import org.coolstyles.helloworld.R;
-import org.coolstyles.helloworld.data.model.Product;
 
 import java.util.List;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ViewHolder> {
-    private List<Product> productList;
+public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.ViewHolder> {
+    private List<String> studentName;
 
-    public ProductAdapter(List<Product> productList){
-        this.productList = productList;
+    public StudentAdapter(List<String> studentName){
+        this.studentName = studentName;
     }
 
     @NonNull
     @Override
-    public ProductAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item_student, parent, false);
 
-        return new ProductAdapter.ViewHolder(view);
+        return new ViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ProductAdapter.ViewHolder holder, int position) {
-        Product product = productList.get(position);
-        holder.tvName.setText(product.name);
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        String str = studentName.get(position);
+        holder.tvName.setText(str);
     }
 
     @Override
     public int getItemCount() {
-        return productList.size();
+        return studentName.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
