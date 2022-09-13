@@ -16,6 +16,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.coolstyles.helloworld.adapter.ProductAdapter;
 import org.coolstyles.helloworld.adapter.StudentAdapter;
 import org.coolstyles.helloworld.data.DatabaseDao;
 import org.coolstyles.helloworld.data.DatabaseSQlite;
@@ -24,13 +25,17 @@ import org.coolstyles.helloworld.data.dao.ProductDao;
 import org.coolstyles.helloworld.data.implement.CategoryDaoImplement;
 import org.coolstyles.helloworld.data.implement.ProductDaoImplement;
 import org.coolstyles.helloworld.data.model.Category;
+import org.coolstyles.helloworld.data.model.Product;
+import org.coolstyles.helloworld.ui.constract.HomeConstract;
+import org.coolstyles.helloworld.ui.constract.HomePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements HomeConstract.IView {
+    private HomeConstract.IPresenter mPresenter;
     RecyclerView rc;
-    List<String> studentName = new ArrayList<>();
+    Button btn;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,32 +47,31 @@ public class MainActivity extends AppCompatActivity {
 
     private void initGUI(){
         rc = findViewById(R.id.rc);
+        rc.setLayoutManager(new LinearLayoutManager(this));
+
+        btn = findViewById(R.id.btn);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
     }
 
     private void initData(){
-        for (int i=0; i < 10; i++){
-            studentName.add("Student " + i);
-        }
+        mPresenter = new HomePresenter(this);
+        mPresenter.getProductList();
+        mPresenter.setView(this);
+    }
 
-        StudentAdapter adapter = new StudentAdapter(studentName);
+    @Override
+    public void setProductListToView(List<Product> productList) {
+        ProductAdapter adapter = new ProductAdapter(productList);
         rc.setAdapter(adapter);
-        rc.setLayoutManager(new LinearLayoutManager(this));
+    }
 
-        DatabaseDao.init(new DatabaseSQlite(this));
+    @Override
+    public void showProductDetail(Product product) {
 
-        CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
-        Category category = new Category(1, "Java");
-        categoryDao.insert(category);
-
-        List<Category> categoryList = categoryDao.all();
-        for (Category cat : categoryList) {
-            Log.i("Category", String.format("id:%d - name:%s", cat.id, cat.name));
-        }
-
-        Category find = categoryDao.find(1);
-        categoryDao.delete(1);
-
-        category.name = "Java Web";
-        categoryDao.update(category);
     }
 }
