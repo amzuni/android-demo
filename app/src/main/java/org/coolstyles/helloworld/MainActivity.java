@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity implements HomeConstract.IVi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        initGUI();
-        initData();
+//        initGUI();
+//        initData();
     }
 
     private void initGUI(){
