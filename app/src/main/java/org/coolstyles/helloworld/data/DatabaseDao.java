@@ -1,6 +1,8 @@
 package org.coolstyles.helloworld.data;
 
 import org.coolstyles.helloworld.data.dao.CategoryDao;
+import org.coolstyles.helloworld.data.dao.OrderDao;
+import org.coolstyles.helloworld.data.dao.OrderDetailDao;
 import org.coolstyles.helloworld.data.dao.ProductDao;
 
 public abstract class DatabaseDao {
@@ -13,4 +15,6 @@ public abstract class DatabaseDao {
     }
     public abstract CategoryDao getCategoryDao();
     public abstract ProductDao getProductDao();
+    public abstract OrderDao getOrderDao();
+    public abstract OrderDetailDao getOrderDetailDao();
 }

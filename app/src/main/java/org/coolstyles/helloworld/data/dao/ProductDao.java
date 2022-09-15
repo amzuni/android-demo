@@ -11,4 +11,6 @@ public interface ProductDao {
     void update(Product product);
     void delete(int id);
     List<Product> findByName(String name);
+    List<Product> getHotProducts();
+    List<Product> getNewProducts();
 }

@@ -19,7 +19,13 @@ public class ProductDaoImplement extends DatabaseHelper implements ProductDao {
 
     @Override
     public Product find(int id) {
-        return null;
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.query("products", null, "id = ?", new String[] { String.valueOf(id) },null, null, null);
+        if(cursor != null)
+            cursor.moveToFirst();
+        Product product = new Product(cursor.getInt(0), cursor.getString(1));
+        return product;
     }
 
     @Override
@@ -56,6 +62,16 @@ public class ProductDaoImplement extends DatabaseHelper implements ProductDao {
 
     @Override
     public List<Product> findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<Product> getHotProducts() {
+        return null;
+    }
+
+    @Override
+    public List<Product> getNewProducts() {
         return null;
     }
 }

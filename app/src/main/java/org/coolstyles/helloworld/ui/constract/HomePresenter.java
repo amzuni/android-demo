@@ -26,8 +26,14 @@ public class HomePresenter implements HomeConstract.IPresenter{
     }
 
     @Override
-    public void getProduct(int productId) {
-        Product product = DatabaseDao.getInstance().getProductDao().find(productId);
-        mView.showProductDetail(product);
+    public void getHotProducts() {
+        List<Product> productList = DatabaseDao.getInstance().getProductDao().getHotProducts();
+        mView.setHotProductsToView(productList);
+    }
+
+    @Override
+    public void getNewProducts() {
+        List<Product> productList = DatabaseDao.getInstance().getProductDao().getNewProducts();
+        mView.setNewProductsToView(productList);
     }
 }
