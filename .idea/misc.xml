@@ -5,6 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/bg_bottom_left_corner.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_product_detail.xml" value="0.103125" />
         <entry key="app/src/main/res/layout/activity_second.xml" value="0.13020833333333334" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.1234375" />
         <entry key="app/src/main/res/layout/item_student.xml" value="0.18385416666666668" />

@@ -37,13 +37,18 @@ public class HomeActivity extends AppCompatActivity implements HomeConstract.IVi
 
     @Override
     public void setProductListToView(List<Product> productList) {
-        ProductAdapter adapter = new ProductAdapter(productList);
+        ProductAdapter adapter = new ProductAdapter(this, productList);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
     @Override
-    public void showProductDetail(Product product) {
+    public void setHotProductsToView(List<Product> productList) {
+
+    }
+
+    @Override
+    public void setNewProductsToView(List<Product> productList) {
 
     }
 }

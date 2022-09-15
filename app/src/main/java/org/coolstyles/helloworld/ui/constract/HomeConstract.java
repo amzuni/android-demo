@@ -7,12 +7,14 @@ import java.util.List;
 public interface HomeConstract {
     interface IView{
         void setProductListToView(List<Product> productList);
-        void showProductDetail(Product product);
+        void setHotProductsToView(List<Product> productList);
+        void setNewProductsToView(List<Product> productList);
     }
 
     interface IPresenter{
         void setView(IView view);
         void getProductList();
-        void getProduct(int productId);
+        void getHotProducts();
+        void getNewProducts();
     }
 }
