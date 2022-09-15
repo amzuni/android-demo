@@ -1,11 +1,15 @@
 package org.coolstyles.helloworld.data.implement;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 
 import org.coolstyles.helloworld.data.DatabaseHelper;
 import org.coolstyles.helloworld.data.dao.ProductDao;
+import org.coolstyles.helloworld.data.model.Category;
 import org.coolstyles.helloworld.data.model.Product;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoImplement extends DatabaseHelper implements ProductDao {
@@ -20,7 +24,19 @@ public class ProductDaoImplement extends DatabaseHelper implements ProductDao {
 
     @Override
     public List<Product> all() {
-        return null;
+        List<Product>  productList = new ArrayList<>();
+        String query = "SELECT * FROM products";
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        cursor.moveToFirst();
+
+        while(cursor.isAfterLast() == false) {
+            Product product = new Product(cursor.getInt(0), cursor.getString(1));
+            productList.add(product);
+            cursor.moveToNext();
+        }
+        return productList;
     }
 
     @Override
